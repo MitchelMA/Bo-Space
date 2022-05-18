@@ -6,9 +6,7 @@ Ons team bestaat uit:
  - Isam
  - Rawen
  - Jayden
- - Nikki
- - Mitchel
+ - Tenq
+ - Mitchel  
 
-## Trello Boards
-[Trello Dev Team](https://trello.com/b/Nsuv5Nry/gamedevbo)  
-[Trello Artists Team](https://trello.com/b/kWiVmtkx/space)
+[Trello Board](https://trello.com/b/kWiVmtkx/space)
