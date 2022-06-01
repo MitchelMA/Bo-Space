@@ -40,7 +40,5 @@ public class BGMouseMove : MonoBehaviour
             0);
         var newX = _bgTransform.position.x * multiplier * unit.x;
         var newY = _bgTransform.position.y * multiplier * unit.y;
-        // zoom in by the multiplier
-        _bgTransform.transform.localScale = _standScale * (multiplier / 1.2f);
     }
 }
