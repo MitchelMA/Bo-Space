@@ -261,6 +261,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Human01
       objectReference: {fileID: 0}
+    - target: {fileID: 1865623238855153311, guid: 0311559c899530547962d8f7cc82779b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3074844978307383484, guid: 0311559c899530547962d8f7cc82779b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0311559c899530547962d8f7cc82779b, type: 3}
 --- !u!1 &1422407113
@@ -275,7 +283,7 @@ GameObject:
   - component: {fileID: 1422407116}
   - component: {fileID: 1422407115}
   - component: {fileID: 1422407114}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,6 +438,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Human01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1865623238855153311, guid: 0311559c899530547962d8f7cc82779b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3074844978307383484, guid: 0311559c899530547962d8f7cc82779b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0311559c899530547962d8f7cc82779b, type: 3}
 --- !u!1 &1884523306
@@ -525,3 +541,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &2025905063 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1865623238855153311, guid: 0311559c899530547962d8f7cc82779b, type: 3}
+  m_PrefabInstance: {fileID: 1810266042}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2025905064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025905063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb048cf3ef9e8b14eb06c7f94f1cc43c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movespeed: 5
+  jumpForce: 8
+  left: 276
+  right: 275
+  jump: 273
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 72
+--- !u!1 &2143285164 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1865623238855153311, guid: 0311559c899530547962d8f7cc82779b, type: 3}
+  m_PrefabInstance: {fileID: 862447287}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2143285165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2143285164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb048cf3ef9e8b14eb06c7f94f1cc43c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movespeed: 5
+  jumpForce: 8
+  left: 97
+  right: 100
+  jump: 119
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 136
