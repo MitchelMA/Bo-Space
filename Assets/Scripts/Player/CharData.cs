@@ -23,6 +23,8 @@ public class CharData : MonoBehaviour
     private float hitDamage = 10f;
     [SerializeField]
     private float maxInvis = 1f;
+    [SerializeField] 
+    private float xOffset = -1f;
 
     // public properties
     public float MaxHealth { get => maxHealth; }
@@ -49,6 +51,7 @@ public class CharData : MonoBehaviour
     {
         _ = Instantiate(hitPref, transform);
         childSprite.sprite = attackSprite;
+        transform.Translate(new Vector3(xOffset, 0, 0));
         child.localScale = new Vector3(attackScale, attackScale, 1);
     }
 
@@ -56,6 +59,7 @@ public class CharData : MonoBehaviour
     {
         childSprite.sprite = standSprite;
         child.localScale = standScale;
+        transform.localPosition = new Vector3(0, 0, 0);
     }
 
     public void SetHitPrefab(Object prefab)
