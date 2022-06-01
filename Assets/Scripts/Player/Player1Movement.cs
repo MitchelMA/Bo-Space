@@ -25,6 +25,14 @@ public class Player1Movement : MonoBehaviour
     private Transform playerChar;
     private CharData playerCharData;
 
+    private float gameOverTimeout = 0.7f;
+    private bool gameOver = false;
+    
+    public float CurrentHealth
+    {
+        get => currentHealth;
+    }
+
 
     private void FixedUpdate()
     {
@@ -40,7 +48,15 @@ public class Player1Movement : MonoBehaviour
         {
             playerCharData.SetStandSprite();
         }
-        
+
+        if (gameOver)
+        {
+            gameOverTimeout -= (1 / 50f);
+            if (gameOverTimeout <= 0)
+            {
+                SceneManager.LoadScene("MenuScreen", LoadSceneMode.Single);
+            }
+        }
     }
 
     // Start is called before the first frame update
@@ -59,6 +75,9 @@ public class Player1Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // take no input when game-over
+        if (gameOver)
+            return;
         if (Input.GetKey(left))
         {
             Rigid1.velocity = new Vector2(-movespeed, Rigid1.velocity.y);
@@ -122,7 +141,7 @@ public class Player1Movement : MonoBehaviour
             {
                 Debug.Log("Dead");
                 Debug.Log($"{gameObject.name} Lost!");
-                SceneManager.LoadScene("MenuScreen", LoadSceneMode.Single);
+                gameOver = true;
             }
         }
     }
