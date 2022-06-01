@@ -13,19 +13,17 @@ public class Player1Movement : MonoBehaviour
     public KeyCode jump;
     public KeyCode attack;
     public LayerMask groundLayer;
+
     public Object hitPref;
-    public float attackDuration = 0.1f;
-    // the attacktimeout: how many seconds it takes before you can attack again
-    public float attackTimeout = 0.8f;
-    public float hitDamage = 10f;
-    public float maxInvis = 1f;
-    public float maxHealth = 100f;
 
     private float currentInvis = 0f;
-    public float currentHealth;
+    private float currentHealth;
     private float currentAttackTimeout = 0f;
 
+
     private Rigidbody2D Rigid1;
+    private Transform playerChar;
+    private CharData playerCharData;
 
 
     private void FixedUpdate()
@@ -38,14 +36,24 @@ public class Player1Movement : MonoBehaviour
         {
             currentAttackTimeout -= (1 / 50f);
         }
+        if(currentAttackTimeout <= 0)
+        {
+            playerCharData.SetStandSprite();
+        }
+        
     }
 
     // Start is called before the first frame update
     void Start()
     {
         Rigid1 = GetComponent<Rigidbody2D>();
-        currentHealth = maxHealth;
+        playerChar = transform.GetChild(0);
+        playerCharData = playerChar.GetComponent<CharData>();
+        // set the hit prefab of the chardata
+        playerCharData.SetHitPrefab(hitPref);
 
+        //set the current health
+        currentHealth = playerCharData.MaxHealth;
     }
 
     // Update is called once per frame
@@ -76,7 +84,7 @@ public class Player1Movement : MonoBehaviour
         if (Input.GetKeyDown(attack) && currentAttackTimeout <= 0)
         {
             ToHit();
-            currentAttackTimeout = attackTimeout;
+            currentAttackTimeout = playerCharData.AttackTimeout;
         }
 
         if (Input.GetKeyDown(jump) && Grounded())
@@ -101,7 +109,7 @@ public class Player1Movement : MonoBehaviour
 
     private void ToHit()
     {
-        _ = Instantiate(hitPref, transform);
+        playerCharData.PrefabCollider();
     }
 
     public void TakeDamage(float damage)
@@ -109,7 +117,7 @@ public class Player1Movement : MonoBehaviour
         if (currentInvis <= 0f)
         {
             currentHealth -= damage;
-            currentInvis = maxInvis;
+            currentInvis = playerCharData.MaxInvis;
             if (currentHealth <= 0)
             {
                 Debug.Log("Dead");

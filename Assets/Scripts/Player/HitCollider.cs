@@ -21,10 +21,10 @@ public class HitCollider : MonoBehaviour
     private void FixedUpdate()
     {
         Transform parent = gameObject.transform.parent;
-        float attackDur = parent.GetComponent<Player1Movement>().attackDuration;
-        float attackDamage = parent.GetComponent<Player1Movement>().hitDamage;
+        float attackDur = parent.GetComponent<CharData>().AttackDuration;
+        float attackDamage = parent.GetComponent<CharData>().HitDamage;
         var overlapList = new List<Collider2D>();
-        if(collider.OverlapCollider(filter, overlapList) > 0)
+        if (collider.OverlapCollider(filter, overlapList) > 0)
         {
             foreach (var col in overlapList)
             {
@@ -38,7 +38,8 @@ public class HitCollider : MonoBehaviour
                 col.GetComponent<Rigidbody2D>().AddForce(force * forceMultiplier, ForceMode2D.Force);
                 Destroy(gameObject, attackDur);
             }
-        } else
+        }
+        else
         {
             Destroy(gameObject, attackDur);
         }

@@ -24,9 +24,11 @@ public class Floor : MonoBehaviour
             foreach(Collider2D overlap in overlaps)
             {
                 Player1Movement mov;
+                CharData data;
+                if(!overlap.transform.GetChild(0).TryGetComponent<CharData>(out data)) { return; }
                 if(overlap.TryGetComponent<Player1Movement>(out mov))
                 {
-                    mov.TakeDamage(mov.maxHealth);
+                    mov.TakeDamage(data.MaxHealth);
                 }
             }
         }
