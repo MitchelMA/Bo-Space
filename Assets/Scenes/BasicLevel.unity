@@ -178,7 +178,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 136
-  hitPref: {fileID: 7566748521360744203, guid: 1d1ae076cb490c14c998593e4da1b73a, type: 3}
+  attackMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!50 &99332853
 Rigidbody2D:
   serializedVersion: 4
@@ -647,7 +649,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 72
-  hitPref: {fileID: 4046753317373753084, guid: 7c8a3493146b04240a2f3e1e1d52af7b, type: 3}
+  attackMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!50 &825929124
 Rigidbody2D:
   serializedVersion: 4

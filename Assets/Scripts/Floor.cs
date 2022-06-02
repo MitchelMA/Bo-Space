@@ -21,15 +21,23 @@ public class Floor : MonoBehaviour
     {
         if(collider.OverlapCollider(filter, overlaps) > 0)
         {
-            foreach(Collider2D overlap in overlaps)
+            HandleOverlaps();
+        }
+    }
+
+    /// <summary>
+    /// Kills all overlapping players who are specified by the filter
+    /// </summary>
+    private void HandleOverlaps()
+    {
+        foreach(Collider2D overlap in overlaps)
+        {
+            Player1Movement mov;
+            CharData data;
+            if(!overlap.transform.GetChild(0).TryGetComponent<CharData>(out data)) { return; }
+            if(overlap.TryGetComponent<Player1Movement>(out mov))
             {
-                Player1Movement mov;
-                CharData data;
-                if(!overlap.transform.GetChild(0).TryGetComponent<CharData>(out data)) { return; }
-                if(overlap.TryGetComponent<Player1Movement>(out mov))
-                {
-                    mov.TakeDamage(data.MaxHealth);
-                }
+                mov.TakeDamage(data.MaxHealth);
             }
         }
     }

@@ -8,23 +8,24 @@ public class BGMouseMove : MonoBehaviour
     [SerializeField] private GameObject background;
     private RectTransform _bgTransform;
 
-    private Vector2 _centrePos = Vector2.zero;
     private Vector2 _mousePos;
-
-    private Vector2 _standPos = Vector2.zero;
-
-    private Vector3 _standScale;
     // Start is called before the first frame update
     void Start()
     {
         // get the rect transform
         _bgTransform = background.GetComponent<RectTransform>();
-        _standPos = _bgTransform.anchoredPosition;;
-        _standScale = _bgTransform.localScale;
     }
 
     // Update is called once per frame
     void Update()
+    {
+        BackgroundUpdate();
+    }
+
+    /// <summary>
+    /// Updates the background such that it moves with the position of the mouse
+    /// </summary>
+    private void BackgroundUpdate()
     {
         Camera main = Camera.main!;
         Vector3 mouse3D = main.ScreenToWorldPoint(Input.mousePosition);
@@ -38,7 +39,5 @@ public class BGMouseMove : MonoBehaviour
             (dist * unit.x) * (multiplier - 1), 
             (dist * unit.y) * (multiplier - 1), 
             0);
-        var newX = _bgTransform.position.x * multiplier * unit.x;
-        var newY = _bgTransform.position.y * multiplier * unit.y;
     }
 }

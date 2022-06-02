@@ -11,14 +11,11 @@ public class HealthBar : MonoBehaviour
     private Player1Movement playerMov;
 
     private CharData playerData;
-
-    private Slider.Direction dir;
     // Start is called before the first frame update
     void Start()
     {
         playerMov = player.GetComponent<Player1Movement>();
         playerData = playerMov.transform.GetChild(0).GetComponent<CharData>();
-        dir = slider.direction;
     }
     
     // Update is called once per frame
