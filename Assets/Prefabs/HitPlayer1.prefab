@@ -169,4 +169,4 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  forceMultiplier: 500
+  forceMultiplier: 10

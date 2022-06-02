@@ -28,21 +28,19 @@ public class HitCollider : MonoBehaviour
         {
             foreach (var col in overlapList)
             {
+                var rigid = col.GetComponent<Rigidbody2D>();
                 Debug.Log(col.name);
-                //Debug.Log(col);
                 col.GetComponent<Player1Movement>().TakeDamage(attackDamage);
                 // calculate the vector with its base the position of this player and
-                // its head pointing towards the opponent
-                Vector3 force = (col.transform.position - transform.parent.transform.position).normalized;
-                //Debug.Log(force);
-                col.GetComponent<Rigidbody2D>().AddForce(force * forceMultiplier, ForceMode2D.Force);
+                // its head pointing towards the opponent, and point it a little upwards
+                Vector3 force = ((col.transform.position - transform.parent.transform.position) * 500 + Vector3.up).normalized;
+                // add the force directly to the velocity
+                rigid.velocity = force * forceMultiplier;
+                // destroy the collider after the duration of the attack is over
                 Destroy(gameObject, attackDur);
             }
         }
-        else
-        {
-            Destroy(gameObject, attackDur);
-        }
+        Destroy(gameObject, attackDur);
     }
 
     // Update is called once per frame
