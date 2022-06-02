@@ -903,6 +903,10 @@ PrefabInstance:
       propertyPath: attackTimeout
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 7512922230439763197, guid: 0311559c899530547962d8f7cc82779b, type: 3}
+      propertyPath: attackDuration
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0311559c899530547962d8f7cc82779b, type: 3}
 --- !u!4 &966309687 stripped

@@ -6,7 +6,6 @@ public class HitCollider : MonoBehaviour
 {
 
     private BoxCollider2D collider;
-    [SerializeField]
     private ContactFilter2D filter;
     [SerializeField]
     private float forceMultiplier = 5f;
@@ -28,6 +27,8 @@ public class HitCollider : MonoBehaviour
         // also set the currentAttackDuration to the maxAttackDuration
         // by doing this, we can keep track when the collider should be set back to inactive
         currentAttackDur = maxAttackDur;
+        // set the filter to use the LayerMask, this is a simple but useful way to reduce noise in collision-detection
+        filter.useLayerMask = true;
     }
     public LayerMask AttackMask
     {
