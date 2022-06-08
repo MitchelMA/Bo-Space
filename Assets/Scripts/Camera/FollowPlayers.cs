@@ -31,7 +31,7 @@ public class FollowPlayers : MonoBehaviour
         {
             float radAngle = camera.fieldOfView * Mathf.Deg2Rad;
             float radHFov = 2 * Mathf.Atan(Mathf.Tan(radAngle / 2) * camera.aspect);
-            return Mathf.Rad2Deg * radHFov;
+            return radHFov * Mathf.Rad2Deg;
         }
     }
 
@@ -40,9 +40,10 @@ public class FollowPlayers : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(HorizonalFov);
         // calculate the reference FOV sizes of the horizontal and vertical axixes
-        _referenceHFOVSize = Mathf.Abs(referenceCameraDistance) * Mathf.Tan(HorizonalFov * Mathf.Rad2Deg);
-        _referenceVFOVSize = Mathf.Abs(referenceCameraDistance) * Mathf.Tan(VerticalFov * Mathf.Rad2Deg);
+        _referenceHFOVSize = Mathf.Abs(referenceCameraDistance) * Mathf.Tan(HorizonalFov/2 * Mathf.Deg2Rad);
+        _referenceVFOVSize = Mathf.Abs(referenceCameraDistance) * Mathf.Tan(VerticalFov/2 * Mathf.Deg2Rad);
     }
 
     // Update is called once per frame
@@ -59,18 +60,19 @@ public class FollowPlayers : MonoBehaviour
         newPos.z = Tools.Clamp(CalcZ(), minCameraValues.z, maxCameraValues.z);
         
         // get the current FOV sizes
-        _HFovSize = Mathf.Abs(newPos.z) * Mathf.Tan(HorizonalFov * Mathf.Rad2Deg);
-        _VFovSize = Mathf.Abs(newPos.z) * Mathf.Tan(VerticalFov * Mathf.Rad2Deg);
+        _HFovSize = Mathf.Abs(newPos.z) * Mathf.Tan(HorizonalFov/2 * Mathf.Deg2Rad);
+        _VFovSize = Mathf.Abs(newPos.z) * Mathf.Tan(VerticalFov/2 * Mathf.Deg2Rad);
         
         // calculate the difference
         float HFovDiff = _HFovSize - _referenceHFOVSize;
         float VFovDiff = _VFovSize - _referenceVFOVSize;
+        Debug.Log($"Current: {_HFovSize}, reference: {_referenceHFOVSize}");
         
         // adjust the clamping values according to the FOV sizes
         // DON'T ADJUST THE MAX VALUE OF THE Y-POS!
         // When you do this, the max could get less than the min
         newPos.y = Tools.Clamp(newPos.y, minCameraValues.y + VFovDiff, maxCameraValues.y);
-        newPos.x = Tools.Clamp(newPos.x, minCameraValues.x + HFovDiff/4, maxCameraValues.x - HFovDiff/4);
+        newPos.x = Tools.Clamp(newPos.x, minCameraValues.x + HFovDiff, maxCameraValues.x - HFovDiff);
         
         // set the camera at its new position
         transform.position = new Vector3(newPos.x, newPos.y, newPos.z);

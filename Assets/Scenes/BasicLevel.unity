@@ -466,7 +466,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 58.678986
+  field of view: 58.77971
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -512,10 +512,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerOne: {fileID: 99332851}
   playerTwo: {fileID: 825929122}
-  minCameraValues: {x: -21, y: 0.5, z: -13}
-  maxCameraValues: {x: 21, y: 4, z: -9}
-  slope: -0.3
-  referencePoint: {x: 12, y: -9}
+  minCameraValues: {x: -21.4, y: 0.5, z: -15}
+  maxCameraValues: {x: 21.4, y: 12, z: -7}
+  slope: -0.6
+  referencePoint: {x: 10, y: -9}
   camera: {fileID: 373312898}
   referenceCameraDistance: -9
 --- !u!1 &595806470
