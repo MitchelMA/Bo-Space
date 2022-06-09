@@ -92,15 +92,12 @@ public class Player1Movement : MonoBehaviour
             return;
         if (Input.GetKey(left))
         {
-            Rigid1.velocity = new Vector2(-movespeed, Rigid1.velocity.y);
+            // Rigid1.velocity = new Vector2(-movespeed, Rigid1.velocity.y);
+            Move(new Vector2(-movespeed, Rigid1.velocity.y));
         }
         else if (Input.GetKey(right))
         {
-            Rigid1.velocity = new Vector2(movespeed, Rigid1.velocity.y);
-        }
-        else
-        {
-            Rigid1.velocity = new Vector2(0, Rigid1.velocity.y);
+            Move(new Vector2(movespeed, Rigid1.velocity.y));
         }
         // rotate the character towards his movement
         if (Input.GetKeyDown(left))
@@ -121,6 +118,7 @@ public class Player1Movement : MonoBehaviour
         if (Input.GetKeyDown(jump) && Grounded())
         {
             Rigid1.velocity = new Vector2(Rigid1.velocity.x, jumpForce);
+            // Move(new Vector2(Rigid1.velocity.x, jumpForce));
         }
     }
     /// <summary>
@@ -140,6 +138,11 @@ public class Player1Movement : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    private void Move(Vector2 moveVector)
+    {
+        transform.position += new Vector3(moveVector.x, moveVector.y) * Time.deltaTime;
     }
 
     private void ToHit()
