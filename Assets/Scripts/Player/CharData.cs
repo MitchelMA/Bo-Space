@@ -1,16 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class CharData : MonoBehaviour
 {
     [SerializeField]
-    private Sprite attackSprite;
     private Sprite standSprite;
     private Transform child;
     private SpriteRenderer childSprite;
     [SerializeField]
-    private float attackScale;
     private Vector3 standScale;
     [SerializeField]
     private GameObject hitPref;
@@ -24,8 +23,6 @@ public class CharData : MonoBehaviour
     private float hitDamage = 10f;
     [SerializeField]
     private float maxInvis = 1f;
-    [SerializeField] 
-    private float xOffset = -1f;
 
     // public properties
     /// <summary>
@@ -60,7 +57,7 @@ public class CharData : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     /// <summary>
@@ -72,15 +69,6 @@ public class CharData : MonoBehaviour
         var ctrlScript = hitPref.GetComponent<HitCollider>();
         // now set the collider as active
         ctrlScript.SetActive();
-        // set the attack-sprite of the player
-        childSprite.sprite = attackSprite;
-        // translate the player by a specified x-offset to account 
-        // for the possible offset of the sprite
-        transform.Translate(new Vector3(xOffset, 0, 0));
-        // resize the sprite by a specified scale to account
-        // for the possible difference in size of the attack sprite
-        // as opposed to the standard sprite
-        child.localScale = new Vector3(attackScale, attackScale, 1);
     }
     /// <summary>
     /// Revert the current-displaying sprite back to the standard sprite.

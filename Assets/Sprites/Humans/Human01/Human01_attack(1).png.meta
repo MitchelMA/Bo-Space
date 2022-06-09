@@ -1,13 +1,7 @@
 fileFormatVersion: 2
-guid: 1ad40a81aaceec14c917655513cbd124
+guid: c5adb37240a6e28448a8ecf8b9beb16f
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -8884273366099992237
-    second: alien_walk_0
-  - first:
-      213: 4164819986553156
-    second: alien_walk_1
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -47,7 +41,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -95,53 +89,11 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: alien_walk_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 530
-        height: 833
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3516526c178b4b480800000000000000
-      internalID: -8884273366099992237
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: alien_walk_1
-      rect:
-        serializedVersion: 2
-        x: 530
-        y: 0
-        width: 556
-        height: 833
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4491ad7b1ebce0000800000000000000
-      internalID: 4164819986553156
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 6d377ef5917a5414ab2abc0e0f154a51
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 

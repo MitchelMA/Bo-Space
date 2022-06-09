@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,10 +26,16 @@ public class Player1Movement : MonoBehaviour
     private Transform hitCollider;
     private Transform playerChar;
     private CharData playerCharData;
+    private Animator spriteAnimator;
 
     private float gameOverTimeout = 0.7f;
     private bool gameOver = false;
-    
+    private static readonly int XVelocityProperty = Animator.StringToHash("x-velocity");
+    private static readonly int YVelocityProperty = Animator.StringToHash("y-velocity");
+    private static readonly int AttackTrigger = Animator.StringToHash("AttackTrigger");
+    private static readonly int InAir = Animator.StringToHash("InAir");
+    private static readonly int JumpTrigger = Animator.StringToHash("JumpTrigger");
+
     public float CurrentHealth
     {
         get => currentHealth;
@@ -43,8 +50,9 @@ public class Player1Movement : MonoBehaviour
         hitCollider.GetComponent<HitCollider>().AttackMask = attackMask;
         playerChar = transform.GetChild(0);
         playerCharData = playerChar.GetComponent<CharData>();
-        // set the hit prefab of the chardata
-        // playerCharData.HitPrefab = hitPref;
+        // get the animator of the sprite of the character
+        spriteAnimator = playerChar.GetChild(0).GetComponent<Animator>();
+        Debug.Log(spriteAnimator);
 
         //set the current health
         currentHealth = playerCharData.MaxHealth;
@@ -62,7 +70,9 @@ public class Player1Movement : MonoBehaviour
         }
         if(currentAttackTimeout <= 0)
         {
-            playerCharData.SetStandSprite();
+            // playerCharData.SetStandSprite();
+            spriteAnimator.SetBool(AttackTrigger, false);
+            
         }
 
         if (gameOver)
@@ -87,17 +97,20 @@ public class Player1Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // reset
+        spriteAnimator.SetFloat(XVelocityProperty, 0);
         // take no input when game-over
         if (gameOver)
             return;
         if (Input.GetKey(left))
         {
-            // Rigid1.velocity = new Vector2(-movespeed, Rigid1.velocity.y);
             Move(new Vector2(-movespeed, Rigid1.velocity.y));
+            spriteAnimator.SetFloat(XVelocityProperty, 1);
         }
         else if (Input.GetKey(right))
         {
             Move(new Vector2(movespeed, Rigid1.velocity.y));
+            spriteAnimator.SetFloat(XVelocityProperty, 1);
         }
         // rotate the character towards his movement
         if (Input.GetKeyDown(left))
@@ -113,13 +126,20 @@ public class Player1Movement : MonoBehaviour
         {
             ToHit();
             currentAttackTimeout = playerCharData.AttackTimeout;
+            spriteAnimator.SetBool(AttackTrigger, true);
         }
 
+        if (Grounded())
+        {
+            spriteAnimator.SetBool(InAir, false);
+        }
         if (Input.GetKeyDown(jump) && Grounded())
         {
             Rigid1.velocity = new Vector2(Rigid1.velocity.x, jumpForce);
-            // Move(new Vector2(Rigid1.velocity.x, jumpForce));
+            spriteAnimator.SetBool(InAir, true);
+            spriteAnimator.SetTrigger(JumpTrigger);
         }
+
     }
     /// <summary>
     /// Uses a Physics2D raycast to check if the player is grounded.
