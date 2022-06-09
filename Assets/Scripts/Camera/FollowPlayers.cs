@@ -40,7 +40,6 @@ public class FollowPlayers : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(HorizonalFov);
         // calculate the reference FOV sizes of the horizontal and vertical axixes
         _referenceHFOVSize = Mathf.Abs(referenceCameraDistance) * Mathf.Tan(HorizonalFov/2 * Mathf.Deg2Rad);
         _referenceVFOVSize = Mathf.Abs(referenceCameraDistance) * Mathf.Tan(VerticalFov/2 * Mathf.Deg2Rad);
@@ -66,7 +65,6 @@ public class FollowPlayers : MonoBehaviour
         // calculate the difference
         float HFovDiff = _HFovSize - _referenceHFOVSize;
         float VFovDiff = _VFovSize - _referenceVFOVSize;
-        Debug.Log($"Current: {_HFovSize}, reference: {_referenceHFOVSize}");
         
         // adjust the clamping values according to the FOV sizes
         // DON'T ADJUST THE MAX VALUE OF THE Y-POS!

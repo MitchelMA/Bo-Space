@@ -82,7 +82,7 @@ public class HitCollider : MonoBehaviour
             col.GetComponent<Player1Movement>().TakeDamage(attackDamage);
             // calculate the vector with its base the position of this player and
             // its head pointing towards the opponent, and point it a little upwards
-            Vector3 force = ((col.transform.position - transform.parent.transform.position) * 500 + Vector3.up).normalized;
+            Vector3 force = ((col.transform.position - transform.parent.transform.parent.position) * 500 + Vector3.up).normalized;
             // add the force directly to the velocity
             rigid.velocity = force * forceMultiplier;
             // destroy the collider after the duration of the attack is over
