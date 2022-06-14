@@ -45,15 +45,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe579635c9987242b9d94a392d4ab3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSprite: {fileID: 21300000, guid: bf0b04b4de97faa49a526a99bad22fb7, type: 3}
-  attackScale: 0.18
+  standSprite: {fileID: 0}
+  standScale: {x: 0, y: 0, z: 0}
   hitPref: {fileID: 4107752784582043460}
   maxHealth: 100
   attackDuration: 0.1
   attackTimeout: 0.8
   hitDamage: 10
   maxInvis: 1
-  xOffset: -1
 --- !u!1 &3074844978307383484
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,7 +80,7 @@ Transform:
   m_GameObject: {fileID: 3074844978307383484}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 8593108523245437}
   m_RootOrder: 0
@@ -126,7 +125,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: f46ce91a5111bf84f91110d9b8187419, type: 3}
+  m_Sprite: {fileID: -2797889468476502601, guid: 2f2c91aba49e37548b456a11e303987a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
