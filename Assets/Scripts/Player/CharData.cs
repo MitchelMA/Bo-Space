@@ -5,12 +5,8 @@ using UnityEngine;
 
 public class CharData : MonoBehaviour
 {
-    [SerializeField]
-    private Sprite standSprite;
     private Transform child;
     private SpriteRenderer childSprite;
-    [SerializeField]
-    private Vector3 standScale;
     [SerializeField]
     private GameObject hitPref;
     [SerializeField]
@@ -50,8 +46,6 @@ public class CharData : MonoBehaviour
     {
         child = transform.GetChild(0);
         childSprite = child.GetComponent<SpriteRenderer>();
-        standSprite = childSprite.sprite;
-        standScale = child.localScale;
     }
 
     // Update is called once per frame
@@ -69,16 +63,5 @@ public class CharData : MonoBehaviour
         var ctrlScript = hitPref.GetComponent<HitCollider>();
         // now set the collider as active
         ctrlScript.SetActive();
-    }
-    /// <summary>
-    /// Revert the current-displaying sprite back to the standard sprite.
-    /// The standard sprite is defined in the Start() method, and is the sprite
-    /// the sprite renderer had at the start of the scene
-    /// </summary>
-    public void SetStandSprite()
-    {
-        childSprite.sprite = standSprite;
-        child.localScale = standScale;
-        transform.localPosition = new Vector3(0, 0, 0);
     }
 }

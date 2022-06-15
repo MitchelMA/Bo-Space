@@ -8,6 +8,7 @@ public class Player1Movement : MonoBehaviour
 {
     public float movespeed;
     public float jumpForce;
+    public float distToGround = 2.35f;
 
     public KeyCode left;
     public KeyCode right;
@@ -17,6 +18,7 @@ public class Player1Movement : MonoBehaviour
 
     public LayerMask attackMask;
 
+
     private float currentInvis = 0f;
     private float currentHealth;
     private float currentAttackTimeout = 0f;
@@ -24,6 +26,7 @@ public class Player1Movement : MonoBehaviour
 
     private Rigidbody2D Rigid1;
     private Transform hitCollider;
+    private HitCollider _hitColliderScript;
     private Transform playerChar;
     private CharData playerCharData;
     private Animator spriteAnimator;
@@ -33,8 +36,8 @@ public class Player1Movement : MonoBehaviour
     private static readonly int XVelocityProperty = Animator.StringToHash("x-velocity");
     private static readonly int YVelocityProperty = Animator.StringToHash("y-velocity");
     private static readonly int AttackTrigger = Animator.StringToHash("AttackTrigger");
-    private static readonly int InAir = Animator.StringToHash("InAir");
     private static readonly int JumpTrigger = Animator.StringToHash("JumpTrigger");
+    private static readonly int GroundedProperty = Animator.StringToHash("Grounded");
 
     public float CurrentHealth
     {
@@ -48,6 +51,7 @@ public class Player1Movement : MonoBehaviour
         hitCollider = transform.GetChild(0).GetChild(1);
         // set the layermask of the filter of the hitCollider
         hitCollider.GetComponent<HitCollider>().AttackMask = attackMask;
+        _hitColliderScript = hitCollider.GetComponent<HitCollider>();
         playerChar = transform.GetChild(0);
         playerCharData = playerChar.GetComponent<CharData>();
         // get the animator of the sprite of the character
@@ -97,29 +101,26 @@ public class Player1Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // reset
+        // set the x-velocity
         spriteAnimator.SetFloat(XVelocityProperty, 0);
+        // set the y-velocity
+        spriteAnimator.SetFloat(YVelocityProperty, Rigid1.velocity.y);
+        // set the grounded property
+        spriteAnimator.SetBool(GroundedProperty, Grounded());
         // take no input when game-over
         if (gameOver)
             return;
         if (Input.GetKey(left))
         {
-            Move(new Vector2(-movespeed, Rigid1.velocity.y));
-            spriteAnimator.SetFloat(XVelocityProperty, 1);
-        }
-        else if (Input.GetKey(right))
-        {
-            Move(new Vector2(movespeed, Rigid1.velocity.y));
-            spriteAnimator.SetFloat(XVelocityProperty, 1);
-        }
-        // rotate the character towards his movement
-        if (Input.GetKeyDown(left))
-        {
+            Move(new Vector2(-movespeed, 0));
             transform.localScale = new Vector3(1, 1, 1);
+            spriteAnimator.SetFloat(XVelocityProperty, 1);
         }
-        else if (Input.GetKeyDown(right))
+        if (Input.GetKey(right))
         {
+            Move(new Vector2(movespeed, 0));
             transform.localScale = new Vector3(-1, 1, 1);
+            spriteAnimator.SetFloat(XVelocityProperty, 1);
         }
 
         if (Input.GetKeyDown(attack) && currentAttackTimeout <= 0)
@@ -128,15 +129,9 @@ public class Player1Movement : MonoBehaviour
             currentAttackTimeout = playerCharData.AttackTimeout;
             spriteAnimator.SetBool(AttackTrigger, true);
         }
-
-        if (Grounded())
-        {
-            spriteAnimator.SetBool(InAir, false);
-        }
-        if (Input.GetKeyDown(jump) && Grounded())
+        if (Input.GetKeyDown(jump) && Grounded() && _hitColliderScript.CurrentAttackDur <= 0f)
         {
             Rigid1.velocity = new Vector2(Rigid1.velocity.x, jumpForce);
-            spriteAnimator.SetBool(InAir, true);
             spriteAnimator.SetTrigger(JumpTrigger);
         }
 
@@ -150,9 +145,8 @@ public class Player1Movement : MonoBehaviour
     {
         Vector2 pos = transform.position;
         Vector2 dir = Vector2.down;
-        float dist = 1.0f;
 
-        RaycastHit2D hit = Physics2D.Raycast(pos, dir, dist, groundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(pos, dir, distToGround, groundLayer);
         if (hit.collider != null)
         {
             return true;
