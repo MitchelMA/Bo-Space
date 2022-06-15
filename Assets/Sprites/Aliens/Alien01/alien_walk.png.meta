@@ -1,7 +1,13 @@
 fileFormatVersion: 2
 guid: 1ad40a81aaceec14c917655513cbd124
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -8884273366099992237
+    second: alien_walk_0
+  - first:
+      213: 4164819986553156
+    second: alien_walk_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -95,9 +101,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 29
-        width: 523
-        height: 804
+        y: 0
+        width: 530
+        height: 833
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,12 +121,12 @@ TextureImporter:
       name: alien_walk_1
       rect:
         serializedVersion: 2
-        x: 528
-        y: 10
-        width: 558
-        height: 823
-      alignment: 2
-      pivot: {x: 0.5, y: 1}
+        x: 530
+        y: 0
+        width: 556
+        height: 833
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

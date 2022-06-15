@@ -5,7 +5,7 @@ using UnityEngine;
 public class HitCollider : MonoBehaviour
 {
 
-    private BoxCollider2D collider;
+    private BoxCollider2D _collider;
     private ContactFilter2D filter;
     [SerializeField]
     private float forceMultiplier = 5f;
@@ -34,11 +34,15 @@ public class HitCollider : MonoBehaviour
     {
         set => filter.layerMask = value;
     }
+    public float CurrentAttackDur
+    {
+        get => currentAttackDur;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        collider = GetComponent<BoxCollider2D>();
+        _collider = GetComponent<BoxCollider2D>();
         Transform parent = gameObject.transform.parent;
         maxAttackDur = parent.GetComponent<CharData>().AttackDuration;
         attackDamage = parent.GetComponent<CharData>().HitDamage;
@@ -52,7 +56,7 @@ public class HitCollider : MonoBehaviour
             return;
         }
         
-        if (collider.OverlapCollider(filter, overlapList) > 0)
+        if (_collider.OverlapCollider(filter, overlapList) > 0)
         {
             HandleOverlaps();
         }
