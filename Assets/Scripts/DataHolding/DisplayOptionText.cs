@@ -20,11 +20,9 @@ public class DisplayOptionText : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log(playerIndex);
         switch (playerIndex)
         {
             case 0:
-            {
                 // early break when the option is empty
                 if (_data.PlayerOneChar.Empty)
                 {
@@ -33,10 +31,8 @@ public class DisplayOptionText : MonoBehaviour
                 }
                 
                 _text.text = _data.PlayerOneChar.Name;
-            }
                 break;
             case 1:
-            {
                 // early break when the option is empty
                 if (_data.PlayerTwoChar.Empty)
                 {
@@ -45,7 +41,6 @@ public class DisplayOptionText : MonoBehaviour
                 }
                 
                 _text.text = _data.PlayerTwoChar.Name;
-            }
                 break;
             default:
                 break;

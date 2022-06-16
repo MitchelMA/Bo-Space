@@ -21,6 +21,12 @@ public class SetCharOption : MonoBehaviour
         
     }
     
+    /// <summary>
+    /// Public method to set the option of the players
+    /// if player one's option is empty, player one may choose
+    /// if player one's option is not empty and player two's option *is* empty, player two may choose
+    /// else nothing will happen
+    /// </summary>
     public void SetOption()
     {
         // only set player one when player one is not empty

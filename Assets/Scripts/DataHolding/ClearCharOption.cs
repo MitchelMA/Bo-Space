@@ -17,22 +17,12 @@ public class ClearCharOption : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Public method to clear a player's option
+    /// </summary>
+    /// <param name="index">the index of the player whose option gets cleared</param>
     public void ClearOption(int index)
     {
-        switch (index)
-        {
-            case 0:
-            {
-                _data.PlayerOneChar.SetEmpty();
-            }
-                break;
-            case 1:
-            {
-                _data.PlayerTwoChar.SetEmpty();
-            }
-                break;
-            default:
-                break;
-        }
+        _data.ClearChar(index);
     }
 }
