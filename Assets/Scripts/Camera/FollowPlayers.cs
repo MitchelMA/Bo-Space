@@ -18,7 +18,7 @@ public class FollowPlayers : MonoBehaviour
     [SerializeField] private float slope = -3;
     [SerializeField] private Vector2 referencePoint = new Vector2(6, -9);
 
-    [SerializeField] private Camera camera;
+    [SerializeField] private Camera _camera;
     [SerializeField] private float referenceCameraDistance = -9;
     private float _referenceHFOVSize = 0;
     private float _referenceVFOVSize = 0;
@@ -29,13 +29,13 @@ public class FollowPlayers : MonoBehaviour
     {
         get 
         {
-            float radAngle = camera.fieldOfView * Mathf.Deg2Rad;
-            float radHFov = 2 * Mathf.Atan(Mathf.Tan(radAngle / 2) * camera.aspect);
+            float radAngle = _camera.fieldOfView * Mathf.Deg2Rad;
+            float radHFov = 2 * Mathf.Atan(Mathf.Tan(radAngle / 2) * _camera.aspect);
             return radHFov * Mathf.Rad2Deg;
         }
     }
 
-    private float VerticalFov => camera.fieldOfView;
+    private float VerticalFov => _camera.fieldOfView;
 
     // Start is called before the first frame update
     void Start()

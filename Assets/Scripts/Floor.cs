@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class Floor : MonoBehaviour
 {
-    private BoxCollider2D collider;
-    private List<Collider2D> overlaps;
+    private BoxCollider2D _collider;
+    private List<Collider2D> _overlaps;
     [SerializeField]
     private ContactFilter2D filter;
     
     // Start is called before the first frame update
     void Start()
     {
-        collider = GetComponent<BoxCollider2D>();
-        overlaps = new List<Collider2D>();
+        _collider = GetComponent<BoxCollider2D>();
+        _overlaps = new List<Collider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(collider.OverlapCollider(filter, overlaps) > 0)
+        if(_collider.OverlapCollider(filter, _overlaps) > 0)
         {
             HandleOverlaps();
         }
@@ -30,7 +30,7 @@ public class Floor : MonoBehaviour
     /// </summary>
     private void HandleOverlaps()
     {
-        foreach(Collider2D overlap in overlaps)
+        foreach(Collider2D overlap in _overlaps)
         {
             Player1Movement mov;
             CharData data;

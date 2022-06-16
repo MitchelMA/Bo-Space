@@ -7,17 +7,19 @@ public class BGMouseMove : MonoBehaviour
     [SerializeField] private float multiplier = 1f;
     [SerializeField] private GameObject background;
     private RectTransform _bgTransform;
+    private Camera _camera;
 
     private Vector2 _mousePos;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         // get the rect transform
         _bgTransform = background.GetComponent<RectTransform>();
+        _camera = Camera.main!;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         BackgroundUpdate();
     }
@@ -27,17 +29,22 @@ public class BGMouseMove : MonoBehaviour
     /// </summary>
     private void BackgroundUpdate()
     {
-        Camera main = Camera.main!;
-        Vector3 mouse3D = main.ScreenToWorldPoint(Input.mousePosition);
-        _mousePos = new Vector2(mouse3D.x, mouse3D.y);
-        Vector2 unit = _mousePos.normalized;
-        float dist = _mousePos.magnitude;
-
+        // get the position of the mouse
+        Vector3 mousePos = Input.mousePosition;
+        // set the z-index to be 10 units away from the camera, else it might not work
+        mousePos.z = 10;
+        // get the 3d position
+        Vector3 mouse3D = _camera.ScreenToWorldPoint(mousePos);
+        // convert it to a 2d position
+        _mousePos = mouse3D;
+        
+        // sets the size of the background to always be that of the screen of the player
         _bgTransform.sizeDelta = new Vector2(Screen.width, Screen.height);
         
+        // and now set the position of the background
         _bgTransform.anchoredPosition = new Vector3(
-            (dist * unit.x) * (multiplier - 1), 
-            (dist * unit.y) * (multiplier - 1), 
+            _mousePos.x * (multiplier - 1), 
+            _mousePos.y * (multiplier - 1), 
             0);
     }
 }
