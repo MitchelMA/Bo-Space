@@ -14,6 +14,7 @@ public class Player1Movement : MonoBehaviour
     public KeyCode right;
     public KeyCode jump;
     public KeyCode attack;
+    public KeyCode block;
     public LayerMask groundLayer;
 
     public LayerMask attackMask;
@@ -22,6 +23,8 @@ public class Player1Movement : MonoBehaviour
     private float currentInvis = 0f;
     private float currentHealth;
     private float currentAttackTimeout = 0f;
+    private float currentBlockDuration = 0f;
+    private float currentBlockTimeout = 0f;
 
 
     private Rigidbody2D Rigid1;
@@ -32,11 +35,13 @@ public class Player1Movement : MonoBehaviour
     private Animator spriteAnimator;
 
     private bool gameOver = false;
+    
     private static readonly int XVelocityProperty = Animator.StringToHash("x-velocity");
     private static readonly int YVelocityProperty = Animator.StringToHash("y-velocity");
     private static readonly int AttackTrigger = Animator.StringToHash("AttackTrigger");
     private static readonly int JumpTrigger = Animator.StringToHash("JumpTrigger");
     private static readonly int GroundedProperty = Animator.StringToHash("Grounded");
+    private static readonly int BlockingProperty = Animator.StringToHash("Blocking");
 
     public float CurrentHealth
     {
@@ -44,6 +49,11 @@ public class Player1Movement : MonoBehaviour
     }
 
     public bool GameOver => gameOver;
+
+    /// <summary>
+    /// Public boolean that determines if the player is blocking or not
+    /// </summary>
+    public bool Blocking => spriteAnimator.GetBool(BlockingProperty);
     
     // Start is called before the first frame update
     void Start()
@@ -79,6 +89,21 @@ public class Player1Movement : MonoBehaviour
             spriteAnimator.SetBool(AttackTrigger, false);
             
         }
+
+        if (currentBlockDuration > 0)
+        {
+            currentBlockDuration -= (1 / 50f);
+            spriteAnimator.SetBool(BlockingProperty, true);
+        }
+        else
+        {
+            spriteAnimator.SetBool(BlockingProperty, false);
+        }
+
+        if (currentBlockTimeout > 0)
+        {
+            currentBlockTimeout -= (1 / 50f);
+        }
     }
 
     
@@ -95,25 +120,25 @@ public class Player1Movement : MonoBehaviour
         // take no input when game-over
         if (gameOver)
             return;
-        if (Input.GetKey(left))
+        if (Blocking == false && currentBlockTimeout <= 0)
         {
-            Move(new Vector2(-movespeed, 0));
-            transform.localScale = new Vector3(1, 1, 1);
-            spriteAnimator.SetFloat(XVelocityProperty, 1);
-        }
-        if (Input.GetKey(right))
-        {
-            Move(new Vector2(movespeed, 0));
-            transform.localScale = new Vector3(-1, 1, 1);
-            spriteAnimator.SetFloat(XVelocityProperty, 1);
+            HorMove();
         }
 
-        if (Input.GetKeyDown(attack) && currentAttackTimeout <= 0)
+        if (Input.GetKeyDown(attack) && currentAttackTimeout <= 0 && spriteAnimator.GetBool(BlockingProperty) == false)
         {
             ToHit();
             currentAttackTimeout = playerCharData.AttackTimeout;
             spriteAnimator.SetBool(AttackTrigger, true);
         }
+
+        if (Input.GetKeyDown(block) && currentBlockTimeout <= 0)
+        {
+            currentBlockTimeout = playerCharData.BlockTimeout;
+            currentBlockDuration = playerCharData.BlockDuration;
+            spriteAnimator.SetBool(BlockingProperty, true);
+        }
+        
         if (Input.GetKeyDown(jump) && Grounded() && _hitColliderScript.CurrentAttackDur <= 0f)
         {
             Rigid1.velocity = new Vector2(Rigid1.velocity.x, jumpForce);
@@ -121,6 +146,24 @@ public class Player1Movement : MonoBehaviour
         }
 
     }
+
+    private void HorMove()
+    {
+        if (Input.GetKey(left))
+        {
+            Move(new Vector2(-movespeed, 0));
+            transform.localScale = new Vector3(1, 1, 1);
+            spriteAnimator.SetFloat(XVelocityProperty, 1);
+        }
+
+        if (Input.GetKey(right))
+        {
+            Move(new Vector2(movespeed, 0));
+            transform.localScale = new Vector3(-1, 1, 1);
+            spriteAnimator.SetFloat(XVelocityProperty, 1);
+        }
+    }
+    
     /// <summary>
     /// Uses a Physics2D raycast to check if the player is grounded.
     /// It reduces the noise of colliding with all objects by making use of a LayerMask
@@ -166,5 +209,10 @@ public class Player1Movement : MonoBehaviour
                 gameOver = true;
             }
         }
+    }
+
+    public void ResetBlock()
+    {
+        currentBlockTimeout = 0;
     }
 }

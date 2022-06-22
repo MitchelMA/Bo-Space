@@ -153,6 +153,8 @@ MonoBehaviour:
   attackTimeout: 0.8
   hitDamage: 10
   maxInvis: 1
+  blockDuration: 0.4
+  blockTimeout: 1
 --- !u!1001 &3982728696593026829
 PrefabInstance:
   m_ObjectHideFlags: 0

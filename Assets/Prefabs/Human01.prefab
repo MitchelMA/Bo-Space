@@ -51,6 +51,8 @@ MonoBehaviour:
   attackTimeout: 0.8
   hitDamage: 10
   maxInvis: 1
+  blockDuration: 0.4
+  blockTimeout: 1.5
 --- !u!1 &3074844978307383484
 GameObject:
   m_ObjectHideFlags: 0

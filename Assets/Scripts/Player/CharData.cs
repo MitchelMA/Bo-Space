@@ -19,6 +19,10 @@ public class CharData : MonoBehaviour
     private float hitDamage = 10f;
     [SerializeField]
     private float maxInvis = 1f;
+    [SerializeField] 
+    private float blockDuration = 0.4f;
+    [SerializeField] 
+    private float blockTimeout = 0.8f;
 
     // public properties
     /// <summary>
@@ -41,6 +45,17 @@ public class CharData : MonoBehaviour
     /// Public property to get the duration of invisibility frames
     /// </summary>
     public float MaxInvis { get => maxInvis; }
+    
+    /// <summary>
+    /// Public property to get the duration of a block
+    /// </summary>
+    public float BlockDuration => blockDuration;
+
+    /// <summary>
+    /// Public property to get the timeout of a block
+    /// </summary>
+    public float BlockTimeout => blockTimeout;
+
     // Start is called before the first frame update
     void Start()
     {

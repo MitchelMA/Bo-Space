@@ -82,8 +82,17 @@ public class HitCollider : MonoBehaviour
         foreach (var col in overlapList)
         {
             var rigid = col.GetComponent<Rigidbody2D>();
+            bool isBlocking = col.GetComponent<Player1Movement>().Blocking;
             Debug.Log(col.name);
-            col.GetComponent<Player1Movement>().TakeDamage(attackDamage);
+            if (!isBlocking)
+            {
+                col.GetComponent<Player1Movement>().TakeDamage(attackDamage);
+            }
+            // reset block since the target-player successfully blocked
+            else
+            {
+                col.GetComponent<Player1Movement>().ResetBlock();
+            }
             // calculate the vector with its base the position of this player and
             // its head pointing towards the opponent, and point it a little upwards
             Vector3 force = ((col.transform.position - transform.parent.transform.parent.position) * 500 + Vector3.up).normalized;
