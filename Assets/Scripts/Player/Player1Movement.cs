@@ -122,7 +122,7 @@ public class Player1Movement : MonoBehaviour
             return;
         if (Blocking == false && currentBlockTimeout <= 0)
         {
-            HorMove();
+            HorVerMove();
         }
 
         if (Input.GetKeyDown(attack) && currentAttackTimeout <= 0 && spriteAnimator.GetBool(BlockingProperty) == false)
@@ -139,15 +139,9 @@ public class Player1Movement : MonoBehaviour
             spriteAnimator.SetBool(BlockingProperty, true);
         }
         
-        if (Input.GetKeyDown(jump) && Grounded() && _hitColliderScript.CurrentAttackDur <= 0f)
-        {
-            Rigid1.velocity = new Vector2(Rigid1.velocity.x, jumpForce);
-            spriteAnimator.SetTrigger(JumpTrigger);
-        }
-
     }
 
-    private void HorMove()
+    private void HorVerMove()
     {
         if (Input.GetKey(left))
         {
@@ -161,6 +155,11 @@ public class Player1Movement : MonoBehaviour
             Move(new Vector2(movespeed, 0));
             transform.localScale = new Vector3(-1, 1, 1);
             spriteAnimator.SetFloat(XVelocityProperty, 1);
+        }
+        if (Input.GetKeyDown(jump) && Grounded() && _hitColliderScript.CurrentAttackDur <= 0f)
+        {
+            Rigid1.velocity = new Vector2(Rigid1.velocity.x, jumpForce);
+            spriteAnimator.SetTrigger(JumpTrigger);
         }
     }
     
