@@ -31,7 +31,6 @@ public class Player1Movement : MonoBehaviour
     private CharData playerCharData;
     private Animator spriteAnimator;
 
-    private float gameOverTimeout = 0.7f;
     private bool gameOver = false;
     private static readonly int XVelocityProperty = Animator.StringToHash("x-velocity");
     private static readonly int YVelocityProperty = Animator.StringToHash("y-velocity");
@@ -43,6 +42,8 @@ public class Player1Movement : MonoBehaviour
     {
         get => currentHealth;
     }
+
+    public bool GameOver => gameOver;
     
     // Start is called before the first frame update
     void Start()
@@ -78,25 +79,9 @@ public class Player1Movement : MonoBehaviour
             spriteAnimator.SetBool(AttackTrigger, false);
             
         }
-
-        if (gameOver)
-        {
-            GameOverDeplete();
-        }
     }
 
-    /// <summary>
-    /// Depletes the time of the gameOverTimeout variable.
-    /// When this timeout hits 0 or lower, the game will switch to the menu-screen
-    /// </summary>
-    private void GameOverDeplete()
-    {
-        gameOverTimeout -= (1 / 50f);
-        if (gameOverTimeout <= 0)
-        {
-            SceneManager.LoadScene("MenuScreen", LoadSceneMode.Single);
-        }
-    }
+    
 
     // Update is called once per frame
     void Update()
@@ -178,7 +163,6 @@ public class Player1Movement : MonoBehaviour
             if (currentHealth <= 0)
             {
                 Debug.Log("Dead");
-                Debug.Log($"{gameObject.name} Lost!");
                 gameOver = true;
             }
         }

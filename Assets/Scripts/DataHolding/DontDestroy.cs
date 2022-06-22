@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class DontDestroy : MonoBehaviour
 {
+    [SerializeField] private string tag;
     void Awake()
     {
-        GameObject[] objs = GameObject.FindGameObjectsWithTag("DataHolder");
+        GameObject[] objs = GameObject.FindGameObjectsWithTag(tag);
 
         if (objs.Length > 1)
         {
