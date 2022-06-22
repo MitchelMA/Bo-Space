@@ -24,6 +24,9 @@ public class FollowPlayers : MonoBehaviour
     private float _referenceVFOVSize = 0;
     private float _HFovSize = 0;
     private float _VFovSize = 0;
+    
+    // linear formula for the camera
+    private PqrForm camForm;
 
     private float HorizonalFov
     {
@@ -43,6 +46,9 @@ public class FollowPlayers : MonoBehaviour
         // calculate the reference FOV sizes of the horizontal and vertical axixes
         _referenceHFOVSize = Mathf.Abs(referenceCameraDistance) * Mathf.Tan(HorizonalFov/2 * Mathf.Deg2Rad);
         _referenceVFOVSize = Mathf.Abs(referenceCameraDistance) * Mathf.Tan(VerticalFov/2 * Mathf.Deg2Rad);
+        
+        // setup of the linear formula of the camera with a slope and a reference point
+        camForm = new PqrForm(slope, referencePoint);
     }
 
     // Update is called once per frame
@@ -56,7 +62,8 @@ public class FollowPlayers : MonoBehaviour
         Vector3 newPos = Vector3.Lerp(playerOnePos, playerTwoPos, 0.5f);
         
         // calculate the new Z position of the camera with the formula z = ax + b;
-        newPos.z = Tools.Clamp(CalcZ(), minCameraValues.z, maxCameraValues.z);
+        float playerDist = Vector3.Distance(playerOnePos, playerTwoPos);
+        newPos.z = Tools.Clamp(camForm.GetY(playerDist), minCameraValues.z, maxCameraValues.z);
         
         // get the current FOV sizes
         _HFovSize = Mathf.Abs(newPos.z) * Mathf.Tan(HorizonalFov/2 * Mathf.Deg2Rad);
@@ -74,16 +81,5 @@ public class FollowPlayers : MonoBehaviour
         
         // set the camera at its new position
         transform.position = new Vector3(newPos.x, newPos.y, newPos.z);
-    }
-
-    private float CalcZ()
-    {
-        // calculate the distance between the two players
-        float dist = (playerOne.position - playerTwo.position).magnitude;
-        // calculate the y-offset `b`
-        float b = referencePoint.y - slope * referencePoint.x;
-        
-        // return the value of the applied formula
-        return slope * dist + b;
     }
 }
