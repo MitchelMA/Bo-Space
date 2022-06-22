@@ -51,7 +51,7 @@ public class GameOver : MonoBehaviour
         if (_currentWait <= 0)
         {
             _done = true;
-            SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+            SceneManager.LoadScene("GameOverScreen", LoadSceneMode.Single);
         }
     }
 
