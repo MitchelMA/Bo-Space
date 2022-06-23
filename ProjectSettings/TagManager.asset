@@ -8,6 +8,8 @@ TagManager:
   - GameOverData
   - PlayerOne
   - PlayerTwo
+  - SettingsData
+  - MenuAudio
   layers:
   - Default
   - TransparentFX

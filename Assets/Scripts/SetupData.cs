@@ -10,6 +10,7 @@ public class SetupData : MonoBehaviour
     [SerializeField] private string playerTwoTag;
     
     [SerializeField] private string dataTag;
+    [SerializeField] private string menuAudioTag;
 
     [SerializeField] private Text playerOneName;
     [SerializeField] private Text playerTwoName;
@@ -41,6 +42,9 @@ public class SetupData : MonoBehaviour
         
         // now delete the data object
         Destroy(_dataObject);
+        
+        // now destroy the menu audio source
+        Destroy(GameObject.FindWithTag(menuAudioTag));
     }
 
     // Start is called before the first frame update

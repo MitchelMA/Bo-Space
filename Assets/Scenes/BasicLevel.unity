@@ -470,6 +470,7 @@ MonoBehaviour:
   playerOneTag: PlayerOne
   playerTwoTag: PlayerTwo
   dataTag: DataHolder
+  menuAudioTag: MenuAudio
   playerOneName: {fileID: 550233246}
   playerTwoName: {fileID: 1768629416}
 --- !u!4 &434427212
