@@ -32,7 +32,7 @@ public class StartGame : MonoBehaviour
             return;
         }
         // check if a scene is selected
-        if (_optionData.StageName == null)
+        if (_optionData.StageName.Trim() == "")
         {
             return;
         }
