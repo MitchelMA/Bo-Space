@@ -24,6 +24,13 @@ public class CharData : MonoBehaviour
     [SerializeField] 
     private float blockTimeout = 0.8f;
 
+    [SerializeField] private GameObject jumpAudioObj;
+    [SerializeField] private GameObject punchAudioObj;
+
+    private AudioSource _jumpAudioSrc;
+    private AudioSource _punchAudioSrc;
+    
+
     // public properties
     /// <summary>
     /// Public property to get the max-health of the CharData script
@@ -56,11 +63,27 @@ public class CharData : MonoBehaviour
     /// </summary>
     public float BlockTimeout => blockTimeout;
 
+    /// <summary>
+    /// Public property to get the audio-src of the jump-action
+    /// </summary>
+    public AudioSource JumpAudioSrc => _jumpAudioSrc;
+    
+    /// <summary>
+    /// Public property to get the audio-src of the punch-action
+    /// </summary>
+    public AudioSource PunchAudioSrc => _punchAudioSrc;
+
     // Start is called before the first frame update
     void Start()
     {
         child = transform.GetChild(0);
         childSprite = child.GetComponent<SpriteRenderer>();
+        
+        // get the jump audio-src
+        _jumpAudioSrc = jumpAudioObj.GetComponent<AudioSource>();
+
+        // get the punch audio-src
+        _punchAudioSrc = punchAudioObj.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame

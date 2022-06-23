@@ -643,7 +643,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Stage O2
+  m_Text: Human Ship
 --- !u!222 &901333823
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1232,7 +1232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ad168955934cc54cb572dad1ae79e5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageName: 
+  stageName: HumanShip
   dataHoldTag: DataHolder
 --- !u!1 &2091564788
 GameObject:

@@ -130,6 +130,8 @@ public class Player1Movement : MonoBehaviour
             ToHit();
             currentAttackTimeout = playerCharData.AttackTimeout;
             spriteAnimator.SetBool(AttackTrigger, true);
+            // call the attack audio-src
+            playerCharData.PunchAudioSrc.Play();
         }
 
         if (Input.GetKeyDown(block) && currentBlockTimeout <= 0)
@@ -160,6 +162,8 @@ public class Player1Movement : MonoBehaviour
         {
             Rigid1.velocity = new Vector2(Rigid1.velocity.x, jumpForce);
             spriteAnimator.SetTrigger(JumpTrigger);
+            // play the jump audio-src
+            playerCharData.JumpAudioSrc.Play();
         }
     }
     

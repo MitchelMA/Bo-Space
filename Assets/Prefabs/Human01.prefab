@@ -229,6 +229,8 @@ MonoBehaviour:
   maxInvis: 1
   blockDuration: 0.4
   blockTimeout: 1.5
+  jumpAudioObj: {fileID: 7937303621166272413}
+  punchAudioObj: {fileID: 659823585905945292}
 --- !u!1 &3074844978307383484
 GameObject:
   m_ObjectHideFlags: 0
