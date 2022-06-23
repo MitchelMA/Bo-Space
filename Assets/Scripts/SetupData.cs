@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SetupData : MonoBehaviour
 {
@@ -10,29 +11,39 @@ public class SetupData : MonoBehaviour
     
     [SerializeField] private string dataTag;
 
+    [SerializeField] private Text playerOneName;
+    [SerializeField] private Text playerTwoName;
+
     private GameObject _playerOneParent;
     private GameObject _playerTwoParent;
 
     private GameObject _dataObject;
     private OptionData _optionData;
-    // Start is called before the first frame update
 
+    // Awake is called before start
     private void Awake()
     {
-        Debug.Log("Awakened");
+        // find the player-parents by tag
         _playerOneParent = GameObject.FindWithTag(playerOneTag);
         _playerTwoParent = GameObject.FindWithTag(playerTwoTag);
-
+        
+        // get the data with the tag
         _dataObject = GameObject.FindWithTag(dataTag);
         _optionData = _dataObject.GetComponent<OptionData>();
         
-        GameObject charOne = Instantiate(_optionData.PlayerOneChar.Character, _playerOneParent.transform);
-        GameObject charTwo = Instantiate(_optionData.PlayerTwoChar.Character, _playerTwoParent.transform);
+        // instantiate the player prefabs
+        Instantiate(_optionData.PlayerOneChar.Character, _playerOneParent.transform);
+        Instantiate(_optionData.PlayerTwoChar.Character, _playerTwoParent.transform);
+
+        // now set the names above their respective health-bars
+        playerOneName.text = _optionData.PlayerOneChar.Name;
+        playerTwoName.text = _optionData.PlayerTwoChar.Name;
         
         // now delete the data object
         Destroy(_dataObject);
     }
 
+    // Start is called before the first frame update
     void Start()
     {
     }
