@@ -6,6 +6,13 @@ using UnityEngine;
 
 public class FollowPlayers : MonoBehaviour
 {
+
+    private enum CameraOption
+    {
+        FromSlope,
+        FromTwoPoint,
+    }
+    
     [SerializeField] 
     private Transform playerOne;
     [SerializeField]
@@ -15,6 +22,7 @@ public class FollowPlayers : MonoBehaviour
     [SerializeField] private Vector3 minCameraValues = new Vector3(-10, 0.3f, -9);
     [SerializeField] private Vector3 maxCameraValues = new Vector3(10, 10, -3f);
 
+    [SerializeField] private CameraOption cameraOption;
     [SerializeField] private float slope = -3;
     [SerializeField] private Vector2 referencePoint = new Vector2(6, -9);
 

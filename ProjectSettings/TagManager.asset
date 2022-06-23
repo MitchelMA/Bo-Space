@@ -6,6 +6,8 @@ TagManager:
   tags:
   - DataHolder
   - GameOverData
+  - PlayerOne
+  - PlayerTwo
   layers:
   - Default
   - TransparentFX

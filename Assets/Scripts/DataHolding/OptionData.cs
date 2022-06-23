@@ -12,7 +12,7 @@ public class OptionData : MonoBehaviour
 
     // stage selection
     // name of the chosen stage
-    private string _stageName;
+    private string _stageName = "BasicLevel";
     
     /// <summary>
     /// Character option of player one
