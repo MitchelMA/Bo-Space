@@ -42,6 +42,7 @@ public class Player1Movement : MonoBehaviour
     private static readonly int JumpTrigger = Animator.StringToHash("JumpTrigger");
     private static readonly int GroundedProperty = Animator.StringToHash("Grounded");
     private static readonly int BlockingProperty = Animator.StringToHash("Blocking");
+    private static readonly int HitTrigger = Animator.StringToHash("HitTrigger");
 
     public float CurrentHealth
     {
@@ -204,6 +205,8 @@ public class Player1Movement : MonoBehaviour
     {
         if (currentInvis <= 0f)
         {
+            // activate the `HitTrigger` for the animation to start
+            spriteAnimator.SetTrigger(HitTrigger);
             currentHealth -= damage;
             currentInvis = playerCharData.MaxInvis;
             if (currentHealth <= 0)
