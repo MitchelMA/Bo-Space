@@ -811,6 +811,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingsObjectTag: SettingsData
   audioSource: {fileID: 1480241579}
+  audioType: 1
 --- !u!114 &1480241578
 MonoBehaviour:
   m_ObjectHideFlags: 0

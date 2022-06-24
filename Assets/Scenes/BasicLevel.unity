@@ -1281,6 +1281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingsObjectTag: SettingsData
   audioSource: {fileID: 827434387}
+  audioType: 1
 --- !u!1 &852715080
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class SetVolume : MonoBehaviour
 {
     [SerializeField] private string settingsObjectTag;
-    [SerializeField] private Slider slider; 
+    [SerializeField] private Slider slider;
+    [SerializeField] private Settings.AudioTypes audioType;
 
     private GameObject _settingsObject;
     private Settings _settingsData;
@@ -26,6 +27,6 @@ public class SetVolume : MonoBehaviour
     public void ChangeVolume()
     {
         // save the volume in %
-        _settingsData.Volume = slider.value * 100f;
-    }
+        _settingsData.Volume[audioType] = slider.value * 100;
+    }   
 }
