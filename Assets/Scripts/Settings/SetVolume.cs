@@ -16,6 +16,8 @@ public class SetVolume : MonoBehaviour
     {
         _settingsObject = GameObject.FindWithTag(settingsObjectTag);
         _settingsData = _settingsObject.GetComponent<Settings>();
+        // get the values of the settingsData object
+        slider.value = _settingsData.Volume[audioType] / 100f;
     }
 
     // Update is called once per frame
