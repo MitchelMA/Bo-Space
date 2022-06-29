@@ -10,6 +10,7 @@ TagManager:
   - PlayerTwo
   - SettingsData
   - MenuAudio
+  - BtnClick
   layers:
   - Default
   - TransparentFX

@@ -7,14 +7,14 @@ public class Settings : MonoBehaviour
     public enum AudioTypes
     {
         Masters,
-        Background,
+        Music,
         SFX,
     }
     // the volume in %
     private readonly Dictionary<AudioTypes, float> _volume = new Dictionary<AudioTypes, float>()
     {
         {AudioTypes.Masters, 100},
-        {AudioTypes.Background, 100},
+        {AudioTypes.Music, 100},
         {AudioTypes.SFX, 100}
     };
 
@@ -31,6 +31,6 @@ public class Settings : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log($"Audio:\nMasters: {_volume[AudioTypes.Masters]}\tBackground: {_volume[AudioTypes.Background] / 100 * _volume[AudioTypes.Masters]}\tSFX: {_volume[AudioTypes.SFX] / 100 * _volume[AudioTypes.Masters]}");
+        Debug.Log($"Audio:\nMasters: {_volume[AudioTypes.Masters]}\tBackground: {_volume[AudioTypes.Music] / 100 * _volume[AudioTypes.Masters]}\tSFX: {_volume[AudioTypes.SFX] / 100 * _volume[AudioTypes.Masters]}");
     }
 }

@@ -359,6 +359,7 @@ GameObject:
   - component: {fileID: 336377809}
   - component: {fileID: 336377808}
   - component: {fileID: 336377811}
+  - component: {fileID: 336377812}
   m_Layer: 5
   m_Name: StageOne
   m_TagString: Untagged
@@ -442,6 +443,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 336377812}
+        m_TargetAssemblyTypeName: ClickSound, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 4740535996579039883, guid: ace4c114f74d4524aad8d6be93db3e6d, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &336377809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,6 +507,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageName: BasicLevel
   dataHoldTag: DataHolder
+--- !u!114 &336377812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 336377806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60b2377d270c1824b97d5780e074ce2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &615571287
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,6 +735,7 @@ GameObject:
   - component: {fileID: 1724532599}
   - component: {fileID: 1724532598}
   - component: {fileID: 1724532597}
+  - component: {fileID: 1724532601}
   m_Layer: 5
   m_Name: BackBtn
   m_TagString: Untagged
@@ -805,6 +831,18 @@ MonoBehaviour:
           m_StringArgument: MainMenu
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1724532601}
+        m_TargetAssemblyTypeName: ClickSound, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2560860773820288075, guid: 00fd8807e875c0c4fb3b120bec458ffa, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1724532599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -843,6 +881,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1724532595}
   m_CullTransparentMesh: 1
+--- !u!114 &1724532601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724532595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60b2377d270c1824b97d5780e074ce2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1724670253
 GameObject:
   m_ObjectHideFlags: 0
@@ -1099,6 +1149,7 @@ GameObject:
   - component: {fileID: 2052398946}
   - component: {fileID: 2052398945}
   - component: {fileID: 2052398948}
+  - component: {fileID: 2052398949}
   m_Layer: 5
   m_Name: StageTwo
   m_TagString: Untagged
@@ -1182,6 +1233,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2052398949}
+        m_TargetAssemblyTypeName: ClickSound, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 4740535996579039883, guid: ace4c114f74d4524aad8d6be93db3e6d, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2052398946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1234,6 +1297,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageName: HumanShip
   dataHoldTag: DataHolder
+--- !u!114 &2052398949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052398943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60b2377d270c1824b97d5780e074ce2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2091564788
 GameObject:
   m_ObjectHideFlags: 0

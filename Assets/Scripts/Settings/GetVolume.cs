@@ -16,6 +16,8 @@ public class GetVolume : MonoBehaviour
     {
         _settingsObject = GameObject.FindWithTag(settingsObjectTag);
         _settingsData = _settingsObject.GetComponent<Settings>();
+        // convert the volume from % to a 0 - 1 range
+        audioSource.volume = _settingsData.Volume[audioType] / 100 * _settingsData.Volume[Settings.AudioTypes.Masters] / 100;
     }
 
     // Update is called once per frame
